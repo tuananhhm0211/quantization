@@ -13,11 +13,6 @@ model_id = "VietAI/vit5-large-vietnews-summarization"
 model = ORTModelForSeq2SeqLM.from_pretrained(model_id, export=True)
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
-try:
-    shutil.rmtree(file_utils.default_cache_path)
-except OSError as e:
-    print("Error: %s - %s." % (e.filename, e.strerror))
-
 save_dir = "./model"
 model.save_pretrained(save_dir)
 
