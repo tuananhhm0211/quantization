@@ -12,8 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login to HuggingFace Hub
-        uses: osbm/huggingface-login@v0.0.2
-        with:
+      uses: osbm/huggingface-login@v0.0.2
+      with:
           username: ${{ secrets.HF_USERNAME }}
           password: ${{ secrets.HF_PASSWORD }}
           add_to_git_credentials: true
