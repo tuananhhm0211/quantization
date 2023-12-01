@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Login to HuggingFace Hub
+        uses: osbm/huggingface_login@v0.1
+        with:
+          username: ${{ secrets.HF_USERNAME }}
+          password: ${{ secrets.HF_PASSWORD }}
+          add_to_git_credentials: true
     - name: Set up Python
       uses: actions/setup-python@v4
     - name: Install dependencies
