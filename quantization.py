@@ -11,7 +11,6 @@ login(token = access_token, add_to_git_credential=True)
 
 model_id = "tuananhhmx4/vi5Onnxruntime"
 model = ORTModelForSeq2SeqLM.from_pretrained(model_id)
-tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 save_dir = "./model"
 
