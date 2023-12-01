@@ -18,16 +18,8 @@ try:
 except OSError as e:
     print("Error: %s - %s." % (e.filename, e.strerror))
 
-
 save_dir = "./model"
-optimizer = ORTOptimizer.from_pretrained(model)
-optimization_config = OptimizationConfig(
-    optimization_level=2,
-    enable_transformers_specific_optimizations=True,
-    optimize_for_gpu=False,
-)
-
-optimizer.optimize(save_dir=save_dir, optimization_config=optimization_config)
+model.save_pretrained(save_dir)
 
 api = HfApi()
 
