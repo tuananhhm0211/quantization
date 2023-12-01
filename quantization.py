@@ -4,6 +4,7 @@ from optimum.onnxruntime import ORTOptimizer, OptimizationConfig
 from huggingface_hub import login, HfApi
 from transformers import file_utils
 import os
+import shutil
 
 access_token="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"
 login(token = access_token, add_to_git_credential=True)
@@ -11,10 +12,11 @@ login(token = access_token, add_to_git_credential=True)
 model_id = "VietAI/vit5-large-vietnews-summarization"
 model = ORTModelForSeq2SeqLM.from_pretrained(model_id, export=True)
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-if os.path.exists(file_utils.default_cache_path):
-  os.rmdir(file_utils.default_cache_path)
-else:
-  print("The file does not exist")
+
+try:
+    shutil.rmtree(file_utils.default_cache_path)
+except OSError as e:
+    print("Error: %s - %s." % (e.filename, e.strerror))
 
 
 save_dir = "./model"
